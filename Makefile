@@ -13,8 +13,6 @@ autocheckin : sort test
 	@sh -c 'read m; git commit -a -m "$$m"'
 	@git pull && git push
 	@git gc
-	@echo "The web version will be updated within ten minutes"
-	@echo "(Run 'make yogi' to update immediately.)"
 
 # alternative version that fires up vi
 checkin : sort test
