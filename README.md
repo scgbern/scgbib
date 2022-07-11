@@ -10,6 +10,8 @@ IMPORTANT
 
 Please use `make` (or make.command) to check in new versions. This will run the tests.  Do NOT commit changes without running the tests!  Details below.
 
+*To do: migrate testing to github actions*
+
 **PLEASE** follow the guidelines below for entering scg publications in the scg bib and in the web archive.  In particular, only put PDFs in the archive if they have a footnote with the *full* citation information.
 
 Contents
@@ -25,20 +27,12 @@ Contents
 
 ---
 
-The scg bibliography database is now under control of git.  A git FAQ has been started at:
-
-	<http://scg.unibe.ch/wiki/faq/git>
-
 How to update
 -------------
 
 Assuming you have write access to the scgbib git repo, check out a copy as follows:
 
-	git clone git@scg.unibe.ch:scgbib
-
-Alternatively, you can check out a read-only version as follows:
-
-	git clone git://scg.unibe.ch/scgbib
+	git clone git@github.com:scgbern/scgbib.git
 
 Make your changes, then:
 
@@ -46,12 +40,6 @@ Make your changes, then:
 
 This will test if the changes are ok.  Fix any problems that appear.
 If there are no problems, make will continue to git pull and push.
-
-The web version of the scg.bib will be updated automatically by a cron job after a few minutes.  To update it immediately (if you have ssh access to scg@yogi), just run:
-
-	make yogi
-
-If there are conflicts, resolve by running `git mergetool`.
 
 Remember to do a `git pull` every time before you start to modify your local copy.
 
@@ -216,3 +204,4 @@ entries.  (Without this value, they are assumed to be workshop papers.)
 
 Oscar Nierstrasz, 2010-08-26
 Updated: 2016-01-25
+Migrated to github: 2022-07-11
