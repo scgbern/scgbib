@@ -1,0 +1,23 @@
+{
+  "name": "bibtext-JSON",
+  "version": "1.0.0",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bibtex-parse": "^2.1.0",
+    "fs-extra": "^10.0.0",
+    "jsonata": "^1.8.5",
+    "jsonfile": "^6.1.0",
+    "jsonpath": "^1.1.1",
+    "to-regex": "^3.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
