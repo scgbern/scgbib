@@ -16,14 +16,10 @@ Files utility:
 
 - package-lock.json: A file that is automatically generated for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
 
+---
 
+This code was originally written by Alexandru Filipescu as the back-end of the citation search engine.
 
+https://github.com/AlexandruFilipescu/Citation-Search-Engine
 
-
-
-
-
-
-
-
-
+---
