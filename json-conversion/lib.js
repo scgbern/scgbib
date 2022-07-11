@@ -38,7 +38,7 @@ function startParsing(fileName)
     var json_content = JSON.stringify(json_result, null, '\t');
     fs.writeFile(output, json_content, 'utf-8', function (err) {
         if (err) {
-            console.log("An error occured while writing JSON Object to File.");
+            console.log("An error occurred while writing JSON Object to File.");
             return console.log(err);
         } else {
           console.log("JSON file has been saved.");
