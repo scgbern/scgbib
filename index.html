@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>SCG Bibliography Search</title>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="row mt-4">
+
+        <div class="col">
+          <form id="form" action="" method="GET" class="d-flex" >
+            <input id="searchForm"   type="text" name="query"
+            placeholder="Search for keywords" class="form-control me-2" >
+
+            <input  id="button" class="btn btn-outline-primary"
+            type="submit" name="submit" value="Search">
+            
+          </form>
+        </div>
+        
+      <div class="row mt-4">
+        <div class="col-4">
+          <div id="resultsDiv" class="alert alert-success" role="alert">
+            <span id="resultsText"></span>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-4">
+          <div class="input-group">
+            <label class="input-group-text" for="inputGroupSelect01">Group by:</label>
+            <select class="form-select" id="inputGroupSelect01">
+              <option value="Author" selected>Author</option>
+              <option value="Year">Year</option>
+              <option value="Category">Category</option>
+              <option value="CategoryYear">CategoryYear</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="mt-5">
+
+         
+
+          <div class="accordion" id="accordion">
+              <template id="item-template">
+
+               {{~#each items}}
+
+                  {{#if (arrayCompare YEAR 'uniqueOrdYears') }} 
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" style="border: none;">
+                        <h2 class="p-2">{{YEAR}}</h2>
+                      </h2>
+                    </div>
+                  {{/if}} 
+
+                  {{#if (arrayCompare type 'uniqueCatYears') }} 
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" style="border: none;">
+                        <h2 class="p-2">{{type}}</h2>
+                      </h2>
+                    </div>
+                  {{/if}} 
+
+                  {{#if (arrayCompare type 'uniqueOrdCateg') }} 
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" style="border: none;">
+                        <h2 class="p-2">{{type}}</h2>
+                      </h2>
+                    </div>
+                  {{/if}} 
+
+                  <div class="accordion-item">
+                
+                    <h2 class="accordion-header" id="{{key}}random">
+                    
+                    <button class="{{#if ABSTRACT}}accordion-button {{else}} my-accordion-button {{/if}}"  type="button" data-bs-toggle="collapse" data-bs-target="#{{key}}" aria-expanded="true" aria-controls="{{key}}"> 
+                          <div>
+                                
+                           
+
+                            {{#if (equals type "article")}} {{joinToEnd ', ' AUTHOR TITLE JOURNAL VOLUME NUMBER (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}} 
+                            
+                            {{#if (equals type "book")}} {{joinToEnd ', ' AUTHOR EDITOR (join '' BOOKTITLE EDITION) PUBLISHER VOLUME SERIES ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+
+                            {{#if (equals type "booklet")}} {{joinToEnd ', ' TITLE AUTHOR HOWPUBLISHED  ADDRESS  (join '' MONTH ' ' YEAR) NOTE}}{{/if}}
+
+                            {{#if (equals type "conference")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR SERIES  VOLUME NUMBER ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}}
+
+                            {{#if (equals type "inbook")}} {{joinToEnd ', ' AUTHOR EDITOR BOOKTITLE CHAPTER PAGES PUBLISHER (join '' MONTH ' ' YEAR) VOLUME SERIES ADDRESS EDITION NOTE }}{{/if}}
+
+                            {{#if (equals type "incollection")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR CHAPTER PAGES PUBLISHER ADDRESS  (join '' MONTH ' ' YEAR)  NOTE }}{{/if}}
+
+                            {{#if (equals type "inproceedings")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR SERIES VOLUME NUMBER ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}}
+
+                            {{#if (equals type "manual")}} {{joinToEnd ', ' BOOKTITLE AUTHOR ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE  }} {{/if}}
+
+                            {{#if (equals type "mastersthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE}}{{/if}}
+
+                            {{#if (equals type "misc")}} {{joinToEnd ', ' AUTHOR TITLE HOWPUBLISHED (join '' MONTH ' ' YEAR) NOTE }}{{/if}}
+
+                            {{#if (equals type "phdthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+
+                            {{#if (equals type "proceedings")}} {{joinToEnd ', ' BOOKTITLE EDITOR PUBLISHER ORGANIZATION ADDRESS (join '' MONTH ' ' YEAR) NOTE}} {{/if}}
+
+                            {{#if (equals type "techreport")}} {{joinToEnd ', ' AUTHOR TITLE (join '' '*Technical Report*') NUMBER INSTITUTION (join '' MONTH ' ' YEAR) TYPE ADDRESS NOTE  }}{{/if}}
+
+                            {{#if (equals type "unpublished")}} {{joinToEnd ', ' AUTHOR TITLE (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+                          
+                            {{~#if URL}} &nbsp {{link 'URL1' URL}} {{/if}}
+                            {{~#if BDSK-URL-1}} &nbsp {{link 'URL2' URL}} {{/if}}
+                            {{~#if BDSK-URL-2}} &nbsp {{link 'URL3' URL}} {{/if}}
+
+                          </div>
+                      </button>
+                    </h2>
+
+                    {{#if ABSTRACT}}
+
+                    <div id="{{key}}" class="accordion-collapse collapse" aria-labelledby="{{key}}random">
+                      <div class="accordion-body">
+                        
+                       {{ABSTRACT}} 
+                     
+                      </div>
+                    </div>
+                    {{/if}}
+
+                  </div>
+                {{~/each}}
+              </template>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./scgbib.js"></script>
+
+    
+
+  </body>
+</html>
+
+
+
+
