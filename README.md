@@ -1,5 +1,8 @@
 
 This is a migration of the old scgbib repo formerly hosted on the SCG git repo.
+It includes the JSON conversion script as well as the JS front-end written by
+Alexandru Filipescu.
+See: https://github.com/AlexandruFilipescu/Citation-Search-Engine
 
 2022-07-11
 
