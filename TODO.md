@@ -1,6 +1,8 @@
 ---
 # TO DO
 
+* Handle the remaining latex backslash to UTF8 translations
+
 * Update the README
 
 * Make the url query parameters consistent with the old scheme
