@@ -1,8 +1,6 @@
 ---
 # TO DO
 
-* Handle the remaining latex backslash to UTF8 translations
-
 * Update the README
 
 * Make the url query parameters consistent with the old scheme
@@ -13,6 +11,8 @@
 
 ---
 # DONE
+
+- Handled all the remaining latex backslash to UTF8 translations
 
 - Fix the URL1 links to PDF
 
