@@ -6,7 +6,7 @@ In order to run the web server that conversts our .bib file -> .json one we have
 
 Files utility:
 
-- App.js is the main file that is executed. The server.listen() is the actual main function that I used to start the parsing.
+- bib2json.js is the main file that is executed. The server.listen() is the actual main function that I used to start the parsing.
 
 - lib.js contains the functionality of the different JS functions that can be reused throught the Node. They are exported through: module.exports = {someFunction},  it also contains the vital startParsing() function.
 
@@ -18,7 +18,7 @@ Files utility:
 
 ---
 
-This code was originally written by Alexandru Filipescu as the back-end of the citation search engine.
+This code was originally written by Alexandru Filipescu as the backend of the citation search engine.
 
 https://github.com/AlexandruFilipescu/Citation-Search-Engine
 

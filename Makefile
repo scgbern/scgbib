@@ -29,7 +29,10 @@ sort :
 # ----------------------------------------------------------------------
 # Convert scgbib to json
 json :
-	cd json-conversion; node bib2json.js; mv scgbib.json ..
+	cd json-conversion; \
+	./latex2utf8.sh ../scg.bib > _scgbib-translated.txt; \
+	node bib2json.js; \
+	mv scgbib.json ..
 # ----------------------------------------------------------------------
 # fold long lines
 fold :

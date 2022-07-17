@@ -44,7 +44,7 @@ function startParsing(fileName)
           console.log("JSON file has been saved.");
         }
     });
-
+ 
 }
 
 function filterIt(searchTags)

@@ -5,7 +5,10 @@ const jsonfile = require('jsonfile');
 const hostname = '127.0.0.1';
 const port = 3000;
 
-lib.startParsing('../scg.bib');
+/* lib.startParsing('../scg.bib'); */
+
+lib.startParsing('_scgbib-translated.txt');
+
 
 /*
 const server = http.createServer((req, res) => {

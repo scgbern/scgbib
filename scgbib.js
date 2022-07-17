@@ -62,7 +62,6 @@ $(document).ready(function()
           }
       }
 
-
       function getSelectorValue()
       {
         var selectedFilter = $('select').children("option:selected").val();
@@ -102,7 +101,6 @@ $(document).ready(function()
         if(queryValues){
           $('#searchForm').val(queryValues);
         } 
-        
       }
 
       function setFilterValue()
@@ -115,7 +113,6 @@ $(document).ready(function()
         } else {
           selectedFilter = getSelectorValue();
         }
-
         return selectedFilter;
       }
 
