@@ -25,6 +25,7 @@ s/\\pobl/ποβλ/g;
 # Oddballs
 s/\$\\neq\$/≠/g;
 s/\$\\sim\$/~/g;
+s/\-\-\-/—/g;\
 s/\-\-/—/g;\
 s/\\ie/i.e./g;
 s/\\eg/e.g./g;
