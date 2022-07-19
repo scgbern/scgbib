@@ -3,7 +3,15 @@
 
 * Update the README
 
-* Make the url query parameters consistent with the old scheme
+* Fix the category headings
+
+* How to make the record key visible?
+	Generate a query to this record
+	Add a bibtex view? (how to generate bibtex from json?)
+
+* make scgbib case insensitive by default ?
+
+* Missing support for “or” queries (with or-bars)
 
 * Clean up scgbib repo
 	* set up github actions to test for errors and generate JS
