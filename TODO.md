@@ -1,9 +1,9 @@
 ---
 # TO DO
 
-* Update the README
-
 * Fix the category headings
+
+* Update the README
 
 * How to make the record key visible?
 	Generate a query to this record
