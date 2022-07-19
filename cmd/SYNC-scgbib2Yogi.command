@@ -9,7 +9,9 @@ RSYNC="-avz --delete -e ssh --stats --progress"
 LOCAL=/Users/oscar/Documents/Projects/scgbib-NEW/
 TARGET=scg@yogi.inf.unibe.ch:/srv/scg.unibe.ch/scgbib/
 
-rsync ${RSYNC} ${LOCAL} ${TARGET}
+rsync ${RSYNC} \
+	'--exclude=_*' \
+	${LOCAL} ${TARGET}
 
 open http://scg.unibe.ch/scgbib
 

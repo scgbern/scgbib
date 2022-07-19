@@ -85,7 +85,7 @@
                           <div>
                             {{#if (equals type "article")}} {{joinToEnd ', ' AUTHOR TITLE JOURNAL VOLUME NUMBER (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}} 
                             
-                            {{#if (equals type "book")}} {{joinToEnd ', ' AUTHOR EDITOR (join '' BOOKTITLE EDITION) PUBLISHER VOLUME SERIES ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
+                            {{#if (equals type "book")}} {{joinToEnd ', ' AUTHOR EDITOR (join '' TITLE EDITION) PUBLISHER VOLUME SERIES ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
 
                             {{#if (equals type "booklet")}} {{joinToEnd ', ' TITLE AUTHOR HOWPUBLISHED  ADDRESS  (join '' MONTH ' ' YEAR) NOTE}}{{/if}}
 
