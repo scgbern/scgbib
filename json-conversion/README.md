@@ -1,25 +1,29 @@
 # Instructions:
 
-In order to run the web server that conversts our .bib file -> .json one we have to type in the terminal:
+To generate the json file from the bibtex source file, run
 
-"node bib2json.js"
+	make json
 
-Files utility:
+from the command line in the parent directory. This will perform:
 
-- bib2json.js is the main file that is executed. The server.listen() is the actual main function that I used to start the parsing.
+	./latex2utf8.sh ../scg.bib > _scgbib-translated.txt
+	node bib2json.js
+	mv scgbib.json ..
 
-- lib.js contains the functionality of the different JS functions that can be reused throught the Node. They are exported through: module.exports = {someFunction},  it also contains the vital startParsing() function.
+The first line runs a perl script to translate latex-style accents to UTF8 characters. The second line runs a javascript node script to generate `scgbib.json` from the translated bibtex file. Finally the json file is moved back to the root.
 
-- output.json contains the already converted file, it can be deleted or overwritten 
+- bib2json.js is the main file that is executed. The server.listen() is the actual main function that is used to start the parsing.
 
-- package.json is the heart of any Node project. this file holds various metadata relevant to the project. This file is used to give information to npm that allows it to identify the project as well as handle the project's dependencies.
+- lib.js contains the JS functions used by bib2json.js. They are exported through: module.exports = {someFunction}. It also contains the vital startParsing() function.
 
-- package-lock.json: A file that is automatically generated for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
+- package.json is the heart of any Node project. This file holds various metadata relevant to the project. This file is used to give information to npm that allows it to identify the project as well as handle the project's dependencies.
+
+- package-lock.json is automatically generated for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
 
 ---
 
-This code was originally written by Alexandru Filipescu as the backend of the citation search engine.
+The original [prototype](https://github.com/AlexandruFilipescu/Citation-Search-Engine) was written by
+[Alexandru Filipescu](https://github.com/AlexandruFilipescu) as part of a [seminar project](http://scg.unibe.ch/wiki/projects/mastersbachelorsprojects/Implementing-a-citation-search-engine-in-JavaScript).
 
-https://github.com/AlexandruFilipescu/Citation-Search-Engine
 
 ---

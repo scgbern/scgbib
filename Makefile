@@ -23,9 +23,17 @@ checkin : sort test
 test :
 	ruby cmd/testbib.rb $b
 
+# NB: only update the scg.bib if there is a difference
 sort :
 	cp scg.bib backup.bib
-	perl -s cmd/bibsort backup.bib > scg.bib
+	perl -s cmd/bibsort backup.bib > sorted.bib
+	@cmp -s scg.bib sorted.bib ; \
+	RETVAL=$$? ; \
+	if [ $$RETVAL -eq 0 ]; then \
+		rm sorted.bib ; \
+	else \
+		mv sorted.bib scg.bib ; \
+	fi
 # ----------------------------------------------------------------------
 # Convert scgbib to json
 json : scgbib.json
