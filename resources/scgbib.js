@@ -5,6 +5,7 @@
 */
 $(document).ready(function() {
   var bibItemArray; // the global array of all bib items before filtering
+
   fetch('./scgbib.json')
     .then(response => response.json())
     .then(data => {
@@ -41,7 +42,7 @@ $(document).ready(function() {
     Retrieve the query args, perform the search, and inject the results into the "accordion" element.
   */
   function search(itemArray) {
-    const queryString = getQueryString('query');
+    const queryString = getUrlParameter('query');
     const queryArray = queryString.split(' ');
     var resultArray = filterItems(queryArray, itemArray);
     showResultCount(resultArray);
@@ -54,15 +55,22 @@ $(document).ready(function() {
   }
 
   /*
-    Retrieve the query string from the URL, or return a default search string.
+    Retrieve the name URL parameter, i.e., 'query' or 'filter', or return a default value.
   */
-  function getQueryString(type) {
+  function getUrlParameter(type) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has(type)) {
       return urlParams.get(type);
     } else {
       return 'Search here...';
+      /*
+      if (type == 'query') {
+        return 'Search here...';
+      } else {
+        return '';
+      }
+      */
     }
   }
 
@@ -84,9 +92,9 @@ $(document).ready(function() {
   }
 
   /*
-    Update the URL to reflect the new filter values.
+    Update the URL to reflect the new query and filter values.
   */
-  function modifyUrl() {
+  function updateUrl() {
     var inputValues = $('#searchForm').val();
     var selectedFilter = getGroupBySelectorValue();
     let params = new URLSearchParams();
@@ -100,17 +108,23 @@ $(document).ready(function() {
     }
   }
 
-  function setInputValue() {
-    var queryValues = getQueryString('query')
-    if (queryValues) {
-      $('#searchForm').val(queryValues);
+  /*
+    Set the input value of the search form to the current query string.
+  */
+  function setQueryInput() {
+    var queryString = getUrlParameter('query')
+    if (queryString) {
+      $('#searchForm').val(queryString);
     }
   }
 
+  /*
+    Set the Group-by select element to the retrieved filter value from the URL.
+  */
   function setFilterValue() {
     var selectedFilter;
     if (queryKeyExists('filter')) {
-      filterValue = getQueryString('filter');
+      filterValue = getUrlParameter('filter');
       selectedFilter = filterValue;
       $('select').val(filterValue);
     } else {
@@ -119,7 +133,10 @@ $(document).ready(function() {
     return selectedFilter;
   }
 
-  function getSortOrder(prop) {
+  /*
+    Comparison function for sorting by a given key (i.e., the 'type' field).
+  */
+  function compareByKeyValue(prop) {
     return function(a, b) {
       if (a[prop] > b[prop]) {
         return 1;
@@ -130,7 +147,10 @@ $(document).ready(function() {
     }
   }
 
-  function getSortCatOrder(prop) {
+  /*
+    Comparison function for group by a given key and sorting by year.
+  */
+  function compareByKeyValueAndYear(prop) {
     return function(a, b) {
       if (a[prop] > b[prop]) {
         return 1;
@@ -142,9 +162,12 @@ $(document).ready(function() {
     }
   }
 
+  /*
+    Group results by the publication category (i.e., the 'type' field).
+  */
   function groupByCategory(resultArray) {
     var orderedObjCateg = resultArray;
-    orderedObjCateg.sort(getSortOrder('type'));
+    orderedObjCateg.sort(compareByKeyValue('type'));
     var categories = orderedObjCateg.map(({
       type
     }) => type);
@@ -152,6 +175,9 @@ $(document).ready(function() {
     search(orderedObjCateg);
   }
 
+  /*
+    Group results by the year
+  */
   function groupByYear(resultArray) {
     var orderedObjYear = resultArray;
     orderedObjYear.sort((a, b) => b.YEAR - a.YEAR);
@@ -162,9 +188,12 @@ $(document).ready(function() {
     search(orderedObjYear);
   }
 
+  /*
+    Group results by the publication category and year
+  */
   function groupByCatYear(resultArray) {
     var orderedObjCateg = resultArray;
-    orderedObjCateg.sort(getSortCatOrder('type'));
+    orderedObjCateg.sort(compareByKeyValueAndYear('type'));
     var categories = orderedObjCateg.map(({
       type
     }) => type);
@@ -180,13 +209,40 @@ $(document).ready(function() {
   })
   $('#form').submit(function(event) {
     event.preventDefault();
-    modifyUrl();
+    updateUrl();
     changeState();
   });
+  
+  /*
+    Return a suitable category heading for each bibtex entry type
+  */
+  function categoryName(type) {
+    const categoryNames = {
+    	"article" : "Articles",
+    	"book" : "Books",
+    	"booklet" : "Booklets",
+    	"conference" : "Conference papers", // NB: legacy bibtex
+    	"inbook" : "Book chapters",
+    	"incollection" : "Papers in collections",
+    	"inproceedings" : "Conference papers",
+    	"manual" : "Technical manual",
+    	"mastersthesis" : "Masters theses",
+    	"misc" : "Miscellaneous",
+    	"phdthesis" : "PhD theses",
+    	"proceedings" : "Conference proceedings",
+    	"techreport" : "Technical report",
+    	"unpublished" : "Unpublished"
+    };
+    if (type in categoryNames) {
+      return categoryNames[type];
+    } else {
+      return "Unknown"
+    }
+  }
 
   function changeState() {
-    modifyUrl();
-    setInputValue();
+    updateUrl();
+    setQueryInput();
     var selectedFilter = setFilterValue();
     var resultArray = search(bibItemArray);
     if (selectedFilter == 'Year') {
