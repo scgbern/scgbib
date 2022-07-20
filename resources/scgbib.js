@@ -3,15 +3,27 @@
   the front-end of the citation search engine.
   https://github.com/AlexandruFilipescu/Citation-Search-Engine
 */
+
+
 $(document).ready(function() {
   var bibItemArray; // the global array of all bib items before filtering
 
-  fetch('./scgbib.json')
+  fetch('scgbib.json')
     .then(response => response.json())
     .then(data => {
       bibItemArray = data;
       updateState();
     })
+
+  /*
+    Define bibEntries as a global so we can access it from Handlebars functions.
+  */
+/*
+  fetch('scg.bib')
+    .then(response => response.text() )
+    .then(string => string.split(/[\n\r][\n\r]+/g))
+    .then(entries => { window.bibEntries = entries; })
+*/
 
   let itemTemplateString = document.getElementById('item-template').innerHTML;
   let renderItem = Handlebars.compile(itemTemplateString);
@@ -236,7 +248,7 @@ $(document).ready(function() {
   $('select').change(function() {
     updateState();
   });
-  
+
 });
 
 
@@ -245,6 +257,14 @@ $(document).ready(function() {
 */
 
 Handlebars.registerHelper('equals', (a, b) => a == b);
+
+Handlebars.registerHelper('arrayCompare', function(arg1, arg2) {
+  if (window[arg2] && arg1 === window[arg2][0]) {
+    var firstYear = [arg2][0];
+    window[arg2].shift();
+    return firstYear;
+  }
+});
 
 Handlebars.registerHelper('joinToEnd', function(delim, ...args) {
   args.pop();
@@ -266,25 +286,6 @@ Handlebars.registerHelper('pdfLink', function(url) {
   var url = Handlebars.escapeExpression(url);
   const icon = '<img src="resources/pdf-icon.png" alt="PDF" style="width:18px;height:20px;">';
   return new Handlebars.SafeString(`<a href='${url}'>${icon}</a>`);
-});
-
-Handlebars.registerHelper('citationLink', function(key) {
-  const icon = '<img src="resources/citation-icon.png" alt="PDF" style="width:18px;height:20px;">';
-  // return new Handlebars.SafeString(`<a href="#bibkey${key}">${icon}</a>`);
-  // Disable for now
-  return '';
-});
-
-Handlebars.registerHelper('bibtexForKey', function(key) {
-  return new Handlebars.SafeString(`PLACEHOLDER TEXT for ${key}`);
-});
-
-Handlebars.registerHelper('arrayCompare', function(arg1, arg2) {
-  if (window[arg2] && arg1 === window[arg2][0]) {
-    var firstYear = [arg2][0];
-    window[arg2].shift();
-    return firstYear;
-  }
 });
 
 /*
@@ -314,3 +315,53 @@ Handlebars.registerHelper('categoryName', function categoryName(type) {
     }
   }
 );
+
+/*
+  Here we want to support citation links to modal popups containing the bibtex.
+  But it is not working due to asynchrony issues. Registering the handlebars helper 
+  as a callback in the fetch promise does not seem to work, as the bibEntries array is not defined.
+*/
+
+Handlebars.registerHelper('citationLink', function(key) {
+  const icon = '<img src="resources/citation-icon.png" alt="PDF" style="width:18px;height:20px;">';
+  // return new Handlebars.SafeString(`<a href="#bibkey${key}">${icon}</a>`);
+  // Disable for now
+  return '';
+});
+
+
+/*
+  This works when we run it in the console, but not when we run it from, also above in the
+  $(document).ready function.
+/*
+fetch('scg.bib')
+  .then(response => response.text() )
+  .then(string => string.split(/[\n\r][\n\r]+/g))
+  .then(entries => { window.bibEntries = entries })
+*/
+
+/*
+  This is not working, also when placed above in the $(document).ready function.
+*/
+/*
+fetch('scg.bib')
+  .then(response => response.text() )
+  .then(string => string.split(/[\n\r][\n\r]+/g))
+  .then(bibEntries => { 
+    Handlebars.registerHelper('bibtexForKey', function(key) {
+      var resultArray = bibEntries.filter(entry => entry.includes(key));
+      var result;
+      if (resultArray.length == 0) {
+        result = resultArray[0];
+      } else {
+        result = `Error -- no bibtex found. Bib entries size = ${bibEntries.size}`;
+      }
+      return new Handlebars.SafeString(`${result}`);
+    });
+  })
+*/
+
+// disable for now
+Handlebars.registerHelper('bibtexForKey', function(key) {
+  return 'nada';
+});
