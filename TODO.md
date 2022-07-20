@@ -8,8 +8,6 @@
 	- Generate a query to this record
 	- Add a bibtex view? (how to generate bibtex from json?)
 
-* make scgbib case insensitive by default ?
-
 * Missing support for “or” queries (with or-bars)
 
 * Clean up scgbib repo
@@ -18,6 +16,9 @@
 
 ---
 # DONE
+
+- Made scgbib case insensitive by default
+	- convert search fields and fields to lower case before searching
 
 - Handled all the remaining latex backslash to UTF8 translations
 
