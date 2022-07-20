@@ -64,7 +64,7 @@
                   {{#if (arrayCompare type 'uniqueCatYears') }} 
                     <div class="accordion-item">
                       <h2 class="accordion-header" style="border: none;">
-                        <h2 class="p-2">{{type}}</h2>
+                        <h2 class="p-2">{{ categoryName type }}</h2>
                       </h2>
                     </div>
                   {{/if}} 
@@ -72,7 +72,7 @@
                   {{#if (arrayCompare type 'uniqueOrdCateg') }} 
                     <div class="accordion-item">
                       <h2 class="accordion-header" style="border: none;">
-                        <h2 class="p-2">{{type}}</h2>
+                        <h2 class="p-2">{{ categoryName type }}</h2>
                       </h2>
                     </div>
                   {{/if}} 
@@ -116,7 +116,6 @@
                             {{~#if BDSK-URL-1}} &nbsp {{link 'URL2' URL}} {{/if}}
                             {{~#if BDSK-URL-2}} &nbsp {{link 'URL3' URL}} {{/if}}
 															-->
-
                           </div>
                       </button>
                     </h2>

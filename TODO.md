@@ -1,9 +1,5 @@
 # TO DO
 
-* Fix the category headings
-
-* Update the README
-
 * How to make the record key visible?
 	- Generate a query to this record
 	- Add a bibtex view? (how to generate bibtex from json?)
@@ -16,6 +12,12 @@
 
 ---
 # DONE
+
+- Commented and refactored the code
+
+- Added handlebar function to map bib item types to proper category headings
+
+- Updates the READMEs
 
 - Made scgbib case insensitive by default
 	- convert search fields and fields to lower case before searching

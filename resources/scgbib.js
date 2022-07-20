@@ -10,7 +10,7 @@ $(document).ready(function() {
     .then(response => response.json())
     .then(data => {
       bibItemArray = data;
-      changeState();
+      updateState();
     })
 
   let itemTemplateString = document.getElementById('item-template').innerHTML;
@@ -200,25 +200,86 @@ $(document).ready(function() {
     window.uniqueCatYears = [...new Set(categories)];
     search(orderedObjCateg);
   }
+  
   $('.accordion').on('click', function(event) {
     var target = $(event.target);
     if (target.is('a')) {
       var href = $(event.target).attr('href');
       window.open(href);
     }
-  })
+  });
+  
   $('#form').submit(function(event) {
     event.preventDefault();
-    updateUrl();
-    changeState();
+    updateState();
   });
   
   /*
-    Return a suitable category heading for each bibtex entry type
+    Update the state of the browser if anything changes.
   */
-  function categoryName(type) {
+  function updateState() {
+    updateUrl();
+    setQueryInput();
+    var selectedFilter = setFilterValue();
+    var resultArray = search(bibItemArray);
+    if (selectedFilter == 'Year') {
+      groupByYear(resultArray);
+    } else if (selectedFilter == 'Author') {
+      search(bibItemArray);
+    } else if (selectedFilter == 'Category') {
+      groupByCategory(resultArray);
+    } else if (selectedFilter == 'CategoryYear') {
+      groupByCatYear(resultArray);
+    }
+  }
+  
+  $('select').change(function() {
+    updateState();
+  });
+});
+
+/*
+  Here the Handlebar functions start. They are designed to be used in index.html, not in this file.
+*/
+
+Handlebars.registerHelper('equals', (a, b) => a == b);
+
+Handlebars.registerHelper('joinToEnd', function(delim, ...args) {
+  args.pop();
+  var args =
+    args.filter(arg => arg !== undefined)
+    .join(delim);
+  args += '. ';
+  return args;
+});
+
+Handlebars.registerHelper('join', function(delim, ...args) {
+  args.pop();
+  return args
+    .filter(arg => arg !== undefined)
+    .join(delim);
+})
+
+Handlebars.registerHelper('link', function(text, url) {
+  var url = Handlebars.escapeExpression(url),
+    text = Handlebars.escapeExpression(text);
+  return new Handlebars.SafeString("<a href='" + url + "'>" + text + "</a>");
+})
+
+Handlebars.registerHelper('arrayCompare', function(arg1, arg2) {
+  if (window[arg2] && arg1 === window[arg2][0]) {
+    var firstYear = [arg2][0];
+    window[arg2].shift();
+    return firstYear;
+  }
+});
+
+/*
+  Return a suitable category heading for each bibtex entry type
+*/
+Handlebars.registerHelper('categoryName', function categoryName(type) {
     const categoryNames = {
-    	"article" : "Articles",
+    	"article" : "Journal articles",
     	"book" : "Books",
     	"booklet" : "Booklets",
     	"conference" : "Conference papers", // NB: legacy bibtex
@@ -239,51 +300,4 @@ $(document).ready(function() {
       return "Unknown"
     }
   }
-
-  function changeState() {
-    updateUrl();
-    setQueryInput();
-    var selectedFilter = setFilterValue();
-    var resultArray = search(bibItemArray);
-    if (selectedFilter == 'Year') {
-      groupByYear(resultArray);
-    } else if (selectedFilter == 'Author') {
-      search(bibItemArray);
-    } else if (selectedFilter == 'Category') {
-      groupByCategory(resultArray);
-    } else if (selectedFilter == 'CategoryYear') {
-      groupByCatYear(resultArray);
-    }
-  }
-  $('select').change(function() {
-    changeState();
-  });
-});
-// Here the Handlebar functions start, they are designated to be used in index.html, not in this file.
-Handlebars.registerHelper('equals', (a, b) => a == b);
-Handlebars.registerHelper('joinToEnd', function(delim, ...args) {
-  args.pop();
-  var args =
-    args.filter(arg => arg !== undefined)
-    .join(delim);
-  args += '. ';
-  return args;
-});
-Handlebars.registerHelper('join', function(delim, ...args) {
-  args.pop();
-  return args
-    .filter(arg => arg !== undefined)
-    .join(delim);
-})
-Handlebars.registerHelper('link', function(text, url) {
-  var url = Handlebars.escapeExpression(url),
-    text = Handlebars.escapeExpression(text);
-  return new Handlebars.SafeString("<a href='" + url + "'>" + text + "</a>");
-})
-Handlebars.registerHelper('arrayCompare', function(arg1, arg2) {
-  if (window[arg2] && arg1 === window[arg2][0]) {
-    var firstYear = [arg2][0];
-    window[arg2].shift();
-    return firstYear;
-  }
-});
+);
