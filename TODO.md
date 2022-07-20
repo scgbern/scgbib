@@ -1,4 +1,3 @@
----
 # TO DO
 
 * Fix the category headings
