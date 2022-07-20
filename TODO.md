@@ -6,8 +6,8 @@
 * Update the README
 
 * How to make the record key visible?
-	Generate a query to this record
-	Add a bibtex view? (how to generate bibtex from json?)
+	- Generate a query to this record
+	- Add a bibtex view? (how to generate bibtex from json?)
 
 * make scgbib case insensitive by default ?
 
