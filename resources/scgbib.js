@@ -236,7 +236,9 @@ $(document).ready(function() {
   $('select').change(function() {
     updateState();
   });
+  
 });
+
 
 /*
   Here the Handlebar functions start. They are designed to be used in index.html, not in this file.
@@ -262,15 +264,17 @@ Handlebars.registerHelper('join', function(delim, ...args) {
 
 Handlebars.registerHelper('pdfLink', function(url) {
   var url = Handlebars.escapeExpression(url);
-  return new Handlebars.SafeString("<a href='" + url + "'>" + 
-    '<img src="resources/pdfIcon.png" alt="PDF" style="width:18px;height:20px;">' + "</a>");
+  const icon = '<img src="resources/pdf-icon.png" alt="PDF" style="width:18px;height:20px;">';
+  return new Handlebars.SafeString(`<a href='${url}'>${icon}</a>`);
 });
 
+/*
 Handlebars.registerHelper('link', function(text, url) {
   var url = Handlebars.escapeExpression(url),
     text = Handlebars.escapeExpression(text);
   return new Handlebars.SafeString("<a href='" + url + "'>" + text + "</a>");
 });
+*/
 
 Handlebars.registerHelper('arrayCompare', function(arg1, arg2) {
   if (window[arg2] && arg1 === window[arg2][0]) {

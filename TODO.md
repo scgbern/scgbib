@@ -5,6 +5,9 @@
 	- Add a bibtex view? 
 		- generate bibtex from json?
 		- or better, separately load in the raw scg.bib and search for the item by key
+	- How to open a modal text box from a loink?
+		- https://stackoverflow.com/questions/59805709/how-to-open-the-modal-popup-using-a-link-instead-of-button
+		- PROBLEM: We need a separate link for each bib item
 
 * Missing support for “or” queries (with or-bars)
 
