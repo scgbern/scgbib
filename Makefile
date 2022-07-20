@@ -8,7 +8,7 @@ bl = BORIS-Backlog
 all : autocheckin
 
 # Prompt for log msg instead of firing up an editor
-autocheckin : sort test
+autocheckin : sort test json
 	@/bin/echo -n "Please enter your log message: "
 	@sh -c 'read m; git commit -a -m "$$m"'
 	@git pull && git push
@@ -28,7 +28,8 @@ sort :
 	perl -s cmd/bibsort backup.bib > scg.bib
 # ----------------------------------------------------------------------
 # Convert scgbib to json
-json :
+json : scgbib.json
+scgbib.json : scg.bib
 	cd json-conversion; \
 	./latex2utf8.sh ../scg.bib > _scgbib-translated.txt; \
 	node bib2json.js; \

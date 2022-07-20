@@ -1,1 +1,0 @@
-require "rbibtex/rbibtex.tab"

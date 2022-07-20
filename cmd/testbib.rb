@@ -2,10 +2,6 @@
 #
 # testbib.rb --- test a bib file for errors
 #
-# TO DO:
-# - add scgbib test for space between pub type and label
-# - fix check_bad_quotes (does not work correctly?)
-#
 # $Id: testbib.rb,v 1.13 2006/08/14 10:02:49 oscar Exp $
 # $Author: oscar $
 # ----------------------------------------------------------------------
@@ -29,12 +25,6 @@ end
 MAXCITATIONS = 5000
 # ----------------------------------------------------------------------
 MAXLINELENGTH = 128 # Mainly for abstracts
-# ----------------------------------------------------------------------
-# We look for required files locally -- don't assume they are
-# installed on this machine ...
-$: << "#{Dir.getwd}/rubylib"
-require "rbibtex"
-PARSER = BibTeX::Parser.new
 # ======================================================================
 # Run all the tests from here
 def main
@@ -392,14 +382,6 @@ class BibEntry
   # Perhaps we need a smarter parser!
   def check_rbibtex_parsing errs
     self.entry
-  end
-  # --------------------------------------------------------------------
-  # Lazy variable -- for the moment not used
-  def entry
-    if @entry.nil?
-      @entry = PARSER.parse(@text)[0] # may raise Racc::ParseError
-    end
-    return @entry
   end
 end
 # ======================================================================
