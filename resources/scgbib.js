@@ -321,14 +321,49 @@ Handlebars.registerHelper('categoryName', function categoryName(type) {
   But it is not working due to asynchrony issues. Registering the handlebars helper 
   as a callback in the fetch promise does not seem to work, as the bibEntries array is not defined.
 */
+/*
+Handlebars.registerHelper('citationLink', function(key) {
+  const icon = '<img src="resources/citation-icon.png" alt="PDF" style="width:18px;height:20px;">';
+  return new Handlebars.SafeString(`<a href="#bibmodal${key}">${icon}</a>`);
+  // Disable for now
+  // return '';
+});
+*/
 
 Handlebars.registerHelper('citationLink', function(key) {
   const icon = '<img src="resources/citation-icon.png" alt="PDF" style="width:18px;height:20px;">';
-  // return new Handlebars.SafeString(`<a href="#bibkey${key}">${icon}</a>`);
-  // Disable for now
+  // return new Handlebars.SafeString(`<a href="javascript:openBibModal('${key}')">${icon}</a>`);
+  // return new Handlebars.SafeString(`<a href="#" onclick="openBibModal('${key}');return false;">${icon}</a>`);
   return '';
 });
 
+/*
+function openBibModal(key) {
+  // Get the modal
+  var modal = document.getElementById(`modal${key}`);
+  if (modal.style.display == "block") {
+    modal.style.display = "none";
+  } else {
+    // Open the modal 
+    modal.style.display = "block";
+    // Inject the content
+    var content = document.getElementById(`bibtex${key}`);
+    content.textContent = (`bibtex for ${key}`);
+    // Get the <span> element that closes the modal
+    var span = document.getElementById(`closeModal${key}`);
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+}
+*/
 
 /*
   This works when we run it in the console, but not when we run it from, also above in the
@@ -362,6 +397,8 @@ fetch('scg.bib')
 */
 
 // disable for now
+/*
 Handlebars.registerHelper('bibtexForKey', function(key) {
   return 'nada';
 });
+*/

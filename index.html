@@ -91,13 +91,7 @@
                                  {{citationLink key}}
                            </button>
                         </h2>
-                        <div class="popup" id="bibkey{{key}}">
-                        <a class="popup__overlay" href="#"></a>
-                        <div class="popup__wrapper">
-                        <a class="popup__close" href="#">x</a>
-                        <p>{{bibtexForKey key}}</p>
-                        </div>
-                        </div>
+
                         {{#if ABSTRACT}}
                         <div id="{{key}}" class="accordion-collapse collapse" aria-labelledby="{{key}}random">
                         <div class="accordion-body">
@@ -106,6 +100,16 @@
                         </div>
                         {{/if}}
                         </div>
+
+												<!-- NOT WORKING
+												<div id="modal{{key}}">
+												  <div class="modal-content">
+												    <span id="closeModal{{key}}">&times;</span>
+														<span id="bibtex{{key}}">bibtex goes here</span>
+												  </div>
+												</div>
+													-->
+												
                         {{~/each}}
                   </template>
                   </div>
