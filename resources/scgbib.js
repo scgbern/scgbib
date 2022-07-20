@@ -4,9 +4,7 @@
   https://github.com/AlexandruFilipescu/Citation-Search-Engine
 */
 $(document).ready(function() {
-  var bibItemArray; // the array of all bib items before filtering
-  var globalResultArray; // the array of results after filtering
-  var queryString, queryArray; // the raw query string, and the array of tags after splitting
+  var bibItemArray; // the global array of all bib items before filtering
   fetch('./scgbib.json')
     .then(response => response.json())
     .then(data => {
@@ -43,15 +41,16 @@ $(document).ready(function() {
     Retrieve the query args, perform the search, and inject the results into the "accordion" element.
   */
   function search(itemArray) {
-    queryString = getQueryString('query');
-    queryArray = queryString.split(' ');
-    globalResultArray = filterItems(queryArray, itemArray);
-    showResultCount(globalResultArray);
+    const queryString = getQueryString('query');
+    const queryArray = queryString.split(' ');
+    var resultArray = filterItems(queryArray, itemArray);
+    showResultCount(resultArray);
     $('#accordion').empty();
     let renderedItem = renderItem({
-      items: globalResultArray
+      items: resultArray
     });
     $('#accordion').append(renderedItem);
+    return resultArray;
   }
 
   /*
@@ -81,14 +80,12 @@ $(document).ready(function() {
   function queryKeyExists(type) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    return urlParams.has(type)
-    /* if (urlParams.has(type)) {
-      return true;
-    } else {
-      return false;
-    } */
+    return urlParams.has(type);
   }
 
+  /*
+    Update the URL to reflect the new filter values.
+  */
   function modifyUrl() {
     var inputValues = $('#searchForm').val();
     var selectedFilter = getGroupBySelectorValue();
@@ -145,8 +142,8 @@ $(document).ready(function() {
     }
   }
 
-  function groupByCategory() {
-    var orderedObjCateg = globalResultArray;
+  function groupByCategory(resultArray) {
+    var orderedObjCateg = resultArray;
     orderedObjCateg.sort(getSortOrder('type'));
     var categories = orderedObjCateg.map(({
       type
@@ -155,8 +152,8 @@ $(document).ready(function() {
     search(orderedObjCateg);
   }
 
-  function groupByYear() {
-    var orderedObjYear = globalResultArray;
+  function groupByYear(resultArray) {
+    var orderedObjYear = resultArray;
     orderedObjYear.sort((a, b) => b.YEAR - a.YEAR);
     var years = orderedObjYear.map(({
       YEAR
@@ -165,8 +162,8 @@ $(document).ready(function() {
     search(orderedObjYear);
   }
 
-  function groupByCatYear() {
-    var orderedObjCateg = globalResultArray;
+  function groupByCatYear(resultArray) {
+    var orderedObjCateg = resultArray;
     orderedObjCateg.sort(getSortCatOrder('type'));
     var categories = orderedObjCateg.map(({
       type
@@ -191,15 +188,15 @@ $(document).ready(function() {
     modifyUrl();
     setInputValue();
     var selectedFilter = setFilterValue();
-    search(bibItemArray);
+    var resultArray = search(bibItemArray);
     if (selectedFilter == 'Year') {
-      groupByYear();
+      groupByYear(resultArray);
     } else if (selectedFilter == 'Author') {
       search(bibItemArray);
     } else if (selectedFilter == 'Category') {
-      groupByCategory();
+      groupByCategory(resultArray);
     } else if (selectedFilter == 'CategoryYear') {
-      groupByCatYear();
+      groupByCatYear(resultArray);
     }
   }
   $('select').change(function() {
