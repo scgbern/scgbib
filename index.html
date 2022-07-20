@@ -10,7 +10,6 @@
     <title>SCG Bibliography Search</title>
   </head>
   <body>
-
     <div class="container">
     <h1><a href="http://scg.unibe.ch">SCG</a> Bibliography Search</h1>
 
@@ -84,37 +83,32 @@
                     <button class="{{#if ABSTRACT}}accordion-button {{else}} my-accordion-button {{/if}}"  type="button" data-bs-toggle="collapse" data-bs-target="#{{key}}" aria-expanded="true" aria-controls="{{key}}"> 
                           <div>
                             {{#if (equals type "article")}} {{joinToEnd ', ' AUTHOR TITLE JOURNAL VOLUME NUMBER (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}} 
-                            
                             {{#if (equals type "book")}} {{joinToEnd ', ' AUTHOR EDITOR (join '' TITLE EDITION) PUBLISHER VOLUME SERIES ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
-
                             {{#if (equals type "booklet")}} {{joinToEnd ', ' TITLE AUTHOR HOWPUBLISHED  ADDRESS  (join '' MONTH ' ' YEAR) NOTE}}{{/if}}
-
                             {{#if (equals type "conference")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR SERIES  VOLUME NUMBER ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}}
-
                             {{#if (equals type "inbook")}} {{joinToEnd ', ' AUTHOR EDITOR BOOKTITLE CHAPTER PAGES PUBLISHER (join '' MONTH ' ' YEAR) VOLUME SERIES ADDRESS EDITION NOTE }}{{/if}}
-
                             {{#if (equals type "incollection")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR CHAPTER PAGES PUBLISHER ADDRESS  (join '' MONTH ' ' YEAR)  NOTE }}{{/if}}
-
                             {{#if (equals type "inproceedings")}} {{joinToEnd ', ' AUTHOR TITLE BOOKTITLE EDITOR SERIES VOLUME NUMBER ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}}
-
                             {{#if (equals type "manual")}} {{joinToEnd ', ' BOOKTITLE AUTHOR ORGANIZATION PUBLISHER ADDRESS (join '' MONTH ' ' YEAR) NOTE  }} {{/if}}
-
                             {{#if (equals type "mastersthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE}}{{/if}}
-
                             {{#if (equals type "misc")}} {{joinToEnd ', ' AUTHOR TITLE HOWPUBLISHED (join '' MONTH ' ' YEAR) NOTE }}{{/if}}
-
                             {{#if (equals type "phdthesis")}} {{joinToEnd ', '  AUTHOR TITLE TYPE SCHOOL ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
-
                             {{#if (equals type "proceedings")}} {{joinToEnd ', ' BOOKTITLE EDITOR PUBLISHER ORGANIZATION ADDRESS (join '' MONTH ' ' YEAR) NOTE}} {{/if}}
-
                             {{#if (equals type "techreport")}} {{joinToEnd ', ' AUTHOR TITLE (join '' '*Technical Report*') NUMBER INSTITUTION (join '' MONTH ' ' YEAR) TYPE ADDRESS NOTE  }}{{/if}}
-
                             {{#if (equals type "unpublished")}} {{joinToEnd ', ' AUTHOR TITLE (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
-                          
                             {{~#if URL}} &nbsp {{pdfLink URL}} {{/if}}
+														{{citationLink key}}
                       </button>
                     </h2>
-
+										
+										<div class="popup" id="bibkey{{key}}">
+										    <a class="popup__overlay" href="#"></a>
+										    <div class="popup__wrapper">
+										        <a class="popup__close" href="#">x</a>
+										        <p>{{bibtexForKey key}}</p>
+										    </div>
+										</div>
+										
                     {{#if ABSTRACT}}
                     <div id="{{key}}" class="accordion-collapse collapse" aria-labelledby="{{key}}random">
                       <div class="accordion-body">
@@ -130,7 +124,6 @@
         </div>
       </div>
     </div>
-
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -138,7 +131,5 @@
     <script src="resources/scgbib.js"></script>
   </body>
 </html>
-
-
 
 

@@ -268,13 +268,16 @@ Handlebars.registerHelper('pdfLink', function(url) {
   return new Handlebars.SafeString(`<a href='${url}'>${icon}</a>`);
 });
 
-/*
-Handlebars.registerHelper('link', function(text, url) {
-  var url = Handlebars.escapeExpression(url),
-    text = Handlebars.escapeExpression(text);
-  return new Handlebars.SafeString("<a href='" + url + "'>" + text + "</a>");
+Handlebars.registerHelper('citationLink', function(key) {
+  const icon = '<img src="resources/citation-icon.png" alt="PDF" style="width:18px;height:20px;">';
+  // return new Handlebars.SafeString(`<a href="#bibkey${key}">${icon}</a>`);
+  // Disable for now
+  return '';
 });
-*/
+
+Handlebars.registerHelper('bibtexForKey', function(key) {
+  return new Handlebars.SafeString(`PLACEHOLDER TEXT for ${key}`);
+});
 
 Handlebars.registerHelper('arrayCompare', function(arg1, arg2) {
   if (window[arg2] && arg1 === window[arg2][0]) {
