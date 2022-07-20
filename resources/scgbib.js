@@ -4,13 +4,13 @@
   https://github.com/AlexandruFilipescu/Citation-Search-Engine
 */
 $(document).ready(function() {
-  var definitiveObjectArray;
-  var objectArray;
-  var textString, textArray;
+  var bibItemArray; // the array of all bib items before filtering
+  var globalResultArray; // the array of results after filtering
+  var queryString, queryArray; // the raw query string, and the array of tags after splitting
   fetch('./scgbib.json')
     .then(response => response.json())
     .then(data => {
-      definitiveObjectArray = data;
+      bibItemArray = data;
       changeState();
     })
 
@@ -22,34 +22,42 @@ $(document).ready(function() {
     Make search case insensitive by converting the field value and the tag to lower case.
     (Should be an option?)
   */
-  function filterIt(searchTags) {
-    return objectArray.filter(object =>
+  function filterItems(searchTags, itemArray) {
+    return itemArray.filter(object =>
       searchTags.every(tag => Object.values(object)
         // .some(value => value.includes(tag))
         .some(value => value.toLowerCase().includes(tag.toLowerCase()))
       ));
   }
 
-  function showResults(totalResults) {
+  /*
+    Inject the count of the results into the "resultsText" element.
+  */
+  function showResultCount(totalResults) {
     console.log('total results: ' + totalResults.length);
     $('#resultsText').text('Number of results returned: ' + totalResults.length);
     $('#resultsText').show('fast');
   }
 
-  function search(object) {
-    textString = getQueryValues('query');
-    textArray = textString.split(' ');
-    objectArray = object;
-    objectArray = filterIt(textArray);
-    showResults(objectArray);
+  /*
+    Retrieve the query args, perform the search, and inject the results into the "accordion" element.
+  */
+  function search(itemArray) {
+    queryString = getQueryString('query');
+    queryArray = queryString.split(' ');
+    globalResultArray = filterItems(queryArray, itemArray);
+    showResultCount(globalResultArray);
     $('#accordion').empty();
     let renderedItem = renderItem({
-      items: objectArray
+      items: globalResultArray
     });
     $('#accordion').append(renderedItem);
   }
 
-  function getQueryValues(type) {
+  /*
+    Retrieve the query string from the URL, or return a default search string.
+  */
+  function getQueryString(type) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has(type)) {
@@ -59,24 +67,31 @@ $(document).ready(function() {
     }
   }
 
-  function getSelectorValue() {
+  /*
+    Retrieve the value of the "group by" select element.
+  */
+  function getGroupBySelectorValue() {
     var selectedFilter = $('select').children("option:selected").val();
     return selectedFilter;
   }
 
+  /*
+    Check if the URL contains the named query field (e.g, 'query', or 'filter.)
+  */
   function queryKeyExists(type) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    if (urlParams.has(type)) {
+    return urlParams.has(type)
+    /* if (urlParams.has(type)) {
       return true;
     } else {
       return false;
-    }
+    } */
   }
 
   function modifyUrl() {
     var inputValues = $('#searchForm').val();
-    var selectedFilter = getSelectorValue();
+    var selectedFilter = getGroupBySelectorValue();
     let params = new URLSearchParams();
     if (inputValues) {
       params.set('query', inputValues);
@@ -89,7 +104,7 @@ $(document).ready(function() {
   }
 
   function setInputValue() {
-    var queryValues = getQueryValues('query')
+    var queryValues = getQueryString('query')
     if (queryValues) {
       $('#searchForm').val(queryValues);
     }
@@ -98,11 +113,11 @@ $(document).ready(function() {
   function setFilterValue() {
     var selectedFilter;
     if (queryKeyExists('filter')) {
-      filterValue = getQueryValues('filter');
+      filterValue = getQueryString('filter');
       selectedFilter = filterValue;
       $('select').val(filterValue);
     } else {
-      selectedFilter = getSelectorValue();
+      selectedFilter = getGroupBySelectorValue();
     }
     return selectedFilter;
   }
@@ -130,8 +145,8 @@ $(document).ready(function() {
     }
   }
 
-  function filterByCategory() {
-    var orderedObjCateg = objectArray;
+  function groupByCategory() {
+    var orderedObjCateg = globalResultArray;
     orderedObjCateg.sort(getSortOrder('type'));
     var categories = orderedObjCateg.map(({
       type
@@ -140,8 +155,8 @@ $(document).ready(function() {
     search(orderedObjCateg);
   }
 
-  function filterByYear() {
-    var orderedObjYear = objectArray;
+  function groupByYear() {
+    var orderedObjYear = globalResultArray;
     orderedObjYear.sort((a, b) => b.YEAR - a.YEAR);
     var years = orderedObjYear.map(({
       YEAR
@@ -150,8 +165,8 @@ $(document).ready(function() {
     search(orderedObjYear);
   }
 
-  function filterByCatYear() {
-    var orderedObjCateg = objectArray;
+  function groupByCatYear() {
+    var orderedObjCateg = globalResultArray;
     orderedObjCateg.sort(getSortCatOrder('type'));
     var categories = orderedObjCateg.map(({
       type
@@ -176,15 +191,15 @@ $(document).ready(function() {
     modifyUrl();
     setInputValue();
     var selectedFilter = setFilterValue();
-    search(definitiveObjectArray);
+    search(bibItemArray);
     if (selectedFilter == 'Year') {
-      filterByYear();
+      groupByYear();
     } else if (selectedFilter == 'Author') {
-      search(definitiveObjectArray);
+      search(bibItemArray);
     } else if (selectedFilter == 'Category') {
-      filterByCategory();
+      groupByCategory();
     } else if (selectedFilter == 'CategoryYear') {
-      filterByCatYear();
+      groupByCatYear();
     }
   }
   $('select').change(function() {
