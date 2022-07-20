@@ -8,7 +8,7 @@ bl = BORIS-Backlog
 all : autocheckin
 
 # Prompt for log msg instead of firing up an editor
-autocheckin : sort test json
+autocheckin : json sort test
 	@/bin/echo -n "Please enter your log message: "
 	@sh -c 'read m; git commit -a -m "$$m"'
 	@git pull && git push
