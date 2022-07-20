@@ -2,7 +2,9 @@
 
 * How to make the record key visible?
 	- Generate a query to this record
-	- Add a bibtex view? (how to generate bibtex from json?)
+	- Add a bibtex view? 
+		- generate bibtex from json?
+		- or better, separately load in the raw scg.bib and search for the item by key
 
 * Missing support for “or” queries (with or-bars)
 
