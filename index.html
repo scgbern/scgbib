@@ -111,7 +111,8 @@
 
                             {{#if (equals type "unpublished")}} {{joinToEnd ', ' AUTHOR TITLE (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
                           
-                            {{~#if URL}} &nbsp {{link 'PDF' URL}} {{/if}}
+                            {{~#if URL}} &nbsp {{pdfLink URL}} {{/if}}
+                            <!-- {{~#if URL}} &nbsp {{link 'PDF' URL}} {{/if}} -->
 														<!--
                             {{~#if BDSK-URL-1}} &nbsp {{link 'URL2' URL}} {{/if}}
                             {{~#if BDSK-URL-2}} &nbsp {{link 'URL3' URL}} {{/if}}
