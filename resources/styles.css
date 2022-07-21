@@ -15,6 +15,74 @@
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
 }
 
+/* Pico scg theme style */
+
+#header { background: #6fb4e8; }
+#header > .container:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+#title {
+    float: left;
+    padding: 1em 0 1em 0;
+}
+
+#title * { margin: 0; color: #fff; }
+#title p { font-style: italic; }
+
+#title h1 { margin: 0.8rem 0; }
+
+/*** TYPOGRAPHY ***/
+
+html { font-size: 16px; }
+
+body {
+    font-family: 'Droid Sans', 'Helvetica', 'Arial', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-variant-ligatures: common-ligatures;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+    color: #444;
+}
+
+p, td, th, li, dd {
+    text-align: left;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+p, hr, table, .table-responsive, ol, ul, dl, dd, pre, blockquote, fieldset {
+    margin-bottom: 1em;
+}
+
+a {
+    color: #6fb4e8;
+    text-decoration: none;
+    -webkit-transition: color .2s ease-in;
+            transition: color .2s ease-in;
+}
+a:hover { color: #444; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #333;
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.7rem; }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.1rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 1rem; font-weight: normal; font-style: italic; }
+
+/*** BASIC LAYOUT: EXTRA SMALL DEVICES ***/
+
+@media (max-width: 767px) {
+    #title { padding: 2em 1.5em 2em 0; }
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
