@@ -322,7 +322,7 @@ Handlebars.registerHelper('categoryName', function categoryName(type) {
 
 // Generate a link to popup the bibtex entry for a key
 Handlebars.registerHelper('citationLink', function(key) {
-  const icon = '<img src="resources/citation-icon.png" alt="PDF" style="width:18px;height:20px;">';
+  const icon = '<img src="resources/citation-icon.png" alt="PDF" style="padding-left:4px;width:24px;height:20px;">';
   return new Handlebars.SafeString(`<a href="javascript:openBibModal('${key}')">${icon}</a>`);
   // return '';
 });

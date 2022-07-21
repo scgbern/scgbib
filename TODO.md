@@ -1,5 +1,9 @@
 # TO DO
 
+- Check external links and remove broken ones
+
+- Make CSS look more like scgpico 
+
 - Add support for “or” queries (with or-bars) ?
 
 - Set up github actions to test for errors and generate JS
