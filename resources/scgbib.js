@@ -1,6 +1,5 @@
 /*
-  This code was originally written by Alexandru Filipescu as 
-  the front-end of the citation search engine.
+  This is based on a prototype originally written by Alexandru Filipescu
   https://github.com/AlexandruFilipescu/Citation-Search-Engine
 */
 $(document).ready(function() {
@@ -17,16 +16,6 @@ $(document).ready(function() {
       bibItemArray = data;
       updateState();
     })
-
-  /*
-    Define bibEntries as a global so we can access it from Handlebars functions.
-  */
-  /*
-    fetch('scg.bib')
-      .then(response => response.text() )
-      .then(string => string.split(/[\n\r][\n\r]+/g))
-      .then(entries => { window.bibEntries = entries; })
-  */
 
   let itemTemplateString = document.getElementById('item-template').innerHTML;
   let renderItem = Handlebars.compile(itemTemplateString);
@@ -49,7 +38,8 @@ $(document).ready(function() {
   */
   function showResultCount(totalResults) {
     console.log('total results: ' + totalResults.length);
-    $('#resultsText').text('Number of results returned: ' + totalResults.length);
+    var total = `${totalResults.length} ${totalResults.length==1?'entry':'entries'} found`;
+    $('#resultsText').text(total);
     $('#resultsText').show('fast');
   }
 
