@@ -3,14 +3,17 @@
   the front-end of the citation search engine.
   https://github.com/AlexandruFilipescu/Citation-Search-Engine
 */
-
-
 $(document).ready(function() {
   var bibItemArray; // the global array of all bib items before filtering
 
   fetch('scgbib.json')
     .then(response => response.json())
     .then(data => {
+      // store a promise for the raw bibtex entries for the citation popups
+      window.bibPromise = fetch('scg.bib')
+        .then(response => response.text())
+        .then(string => string.split(/[\n\r][\n\r]+/g));
+      // ready to go
       bibItemArray = data;
       updateState();
     })
@@ -18,12 +21,12 @@ $(document).ready(function() {
   /*
     Define bibEntries as a global so we can access it from Handlebars functions.
   */
-/*
-  fetch('scg.bib')
-    .then(response => response.text() )
-    .then(string => string.split(/[\n\r][\n\r]+/g))
-    .then(entries => { window.bibEntries = entries; })
-*/
+  /*
+    fetch('scg.bib')
+      .then(response => response.text() )
+      .then(string => string.split(/[\n\r][\n\r]+/g))
+      .then(entries => { window.bibEntries = entries; })
+  */
 
   let itemTemplateString = document.getElementById('item-template').innerHTML;
   let renderItem = Handlebars.compile(itemTemplateString);
@@ -212,7 +215,7 @@ $(document).ready(function() {
     window.uniqueCatYears = [...new Set(categories)];
     search(orderedObjCateg);
   }
-  
+
   $('.accordion').on('click', function(event) {
     var target = $(event.target);
     if (target.is('a')) {
@@ -220,12 +223,12 @@ $(document).ready(function() {
       window.open(href);
     }
   });
-  
+
   $('#form').submit(function(event) {
     event.preventDefault();
     updateState();
   });
-  
+
   /*
     Update the state of the browser if anything changes.
   */
@@ -244,20 +247,21 @@ $(document).ready(function() {
       groupByCatYear(resultArray);
     }
   }
-  
+
   $('select').change(function() {
     updateState();
   });
 
 });
 
-
 /*
   Here the Handlebar functions start. They are designed to be used in index.html, not in this file.
 */
 
+// Test equality
 Handlebars.registerHelper('equals', (a, b) => a == b);
 
+// Compare two arrays
 Handlebars.registerHelper('arrayCompare', function(arg1, arg2) {
   if (window[arg2] && arg1 === window[arg2][0]) {
     var firstYear = [arg2][0];
@@ -266,6 +270,15 @@ Handlebars.registerHelper('arrayCompare', function(arg1, arg2) {
   }
 });
 
+// Join fields
+Handlebars.registerHelper('join', function(delim, ...args) {
+  args.pop();
+  return args
+    .filter(arg => arg !== undefined)
+    .join(delim);
+});
+
+// Join fields and terminate with a period.
 Handlebars.registerHelper('joinToEnd', function(delim, ...args) {
   args.pop();
   var args =
@@ -275,130 +288,72 @@ Handlebars.registerHelper('joinToEnd', function(delim, ...args) {
   return args;
 });
 
-Handlebars.registerHelper('join', function(delim, ...args) {
-  args.pop();
-  return args
-    .filter(arg => arg !== undefined)
-    .join(delim);
-});
-
+// Generate a PDF link
 Handlebars.registerHelper('pdfLink', function(url) {
   var url = Handlebars.escapeExpression(url);
   const icon = '<img src="resources/pdf-icon.png" alt="PDF" style="width:18px;height:20px;">';
   return new Handlebars.SafeString(`<a href='${url}'>${icon}</a>`);
 });
 
-/*
-  Return a suitable category heading for each bibtex entry type
-*/
+// Return a suitable category heading for each bibtex entry type
 Handlebars.registerHelper('categoryName', function categoryName(type) {
-    const categoryNames = {
-    	"article" : "Journal articles",
-    	"book" : "Books",
-    	"booklet" : "Booklets",
-    	"conference" : "Conference papers", // NB: legacy bibtex
-    	"inbook" : "Book chapters",
-    	"incollection" : "Papers in collections",
-    	"inproceedings" : "Conference papers",
-    	"manual" : "Technical manual",
-    	"mastersthesis" : "Masters theses",
-    	"misc" : "Miscellaneous",
-    	"phdthesis" : "PhD theses",
-    	"proceedings" : "Conference proceedings",
-    	"techreport" : "Technical report",
-    	"unpublished" : "Unpublished"
-    };
-    if (type in categoryNames) {
-      return categoryNames[type];
-    } else {
-      return "Unknown"
-    }
+  const categoryNames = {
+    "article": "Journal articles",
+    "book": "Books",
+    "booklet": "Booklets",
+    "conference": "Conference papers", // NB: legacy bibtex
+    "inbook": "Book chapters",
+    "incollection": "Papers in collections",
+    "inproceedings": "Conference papers",
+    "manual": "Technical manual",
+    "mastersthesis": "Masters theses",
+    "misc": "Miscellaneous",
+    "phdthesis": "PhD theses",
+    "proceedings": "Conference proceedings",
+    "techreport": "Technical report",
+    "unpublished": "Unpublished"
+  };
+  if (type in categoryNames) {
+    return categoryNames[type];
+  } else {
+    return "Unknown"
   }
-);
+});
 
-/*
-  Here we want to support citation links to modal popups containing the bibtex.
-  But it is not working due to asynchrony issues. Registering the handlebars helper 
-  as a callback in the fetch promise does not seem to work, as the bibEntries array is not defined.
-*/
-/*
+// Generate a link to popup the bibtex entry for a key
 Handlebars.registerHelper('citationLink', function(key) {
   const icon = '<img src="resources/citation-icon.png" alt="PDF" style="width:18px;height:20px;">';
-  return new Handlebars.SafeString(`<a href="#bibmodal${key}">${icon}</a>`);
-  // Disable for now
+  return new Handlebars.SafeString(`<a href="javascript:openBibModal('${key}')">${icon}</a>`);
   // return '';
 });
-*/
 
-Handlebars.registerHelper('citationLink', function(key) {
-  const icon = '<img src="resources/citation-icon.png" alt="PDF" style="width:18px;height:20px;">';
-  // return new Handlebars.SafeString(`<a href="javascript:openBibModal('${key}')">${icon}</a>`);
-  // return new Handlebars.SafeString(`<a href="#" onclick="openBibModal('${key}');return false;">${icon}</a>`);
-  return '';
-});
-
-/*
+// Open the model box and ask the bibtex promise to add the entry for the given key
 function openBibModal(key) {
-  // Get the modal
-  var modal = document.getElementById(`modal${key}`);
-  if (modal.style.display == "block") {
+  var modal = document.getElementById("bibtexModal");
+  var span = document.getElementsByClassName("close")[0];
+  modal.style.display = "block";
+  span.onclick = function() {
     modal.style.display = "none";
-  } else {
-    // Open the modal 
-    modal.style.display = "block";
-    // Inject the content
-    var content = document.getElementById(`bibtex${key}`);
-    content.textContent = (`bibtex for ${key}`);
-    // Get the <span> element that closes the modal
-    var span = document.getElementById(`closeModal${key}`);
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) {
       modal.style.display = "none";
     }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
   }
-}
-*/
-
-/*
-  This works when we run it in the console, but not when we run it from, also above in the
-  $(document).ready function.
-/*
-fetch('scg.bib')
-  .then(response => response.text() )
-  .then(string => string.split(/[\n\r][\n\r]+/g))
-  .then(entries => { window.bibEntries = entries })
-*/
-
-/*
-  This is not working, also when placed above in the $(document).ready function.
-*/
-/*
-fetch('scg.bib')
-  .then(response => response.text() )
-  .then(string => string.split(/[\n\r][\n\r]+/g))
-  .then(bibEntries => { 
-    Handlebars.registerHelper('bibtexForKey', function(key) {
-      var resultArray = bibEntries.filter(entry => entry.includes(key));
-      var result;
-      if (resultArray.length == 0) {
-        result = resultArray[0];
-      } else {
-        result = `Error -- no bibtex found. Bib entries size = ${bibEntries.size}`;
-      }
-      return new Handlebars.SafeString(`${result}`);
-    });
+  window.bibPromise.then(entries => {
+    var resultArray = entries.filter(entry => entry.includes(key));
+    var result;
+    if (resultArray.length > 1) {
+      console.log(`Whoops! Got ${entries.length} matching entries instead of just one.`)
+    }
+    if (resultArray.length == 0) {
+      result = `Error -- bibtex missing for ${key}`;
+      console.log(`Didn't find any entry for ${key}'`);
+    } else {
+      result = resultArray[0];
+    }
+    var content = document.getElementById('modalContent');
+    content.textContent = (result);
   })
-*/
+}
 
-// disable for now
-/*
-Handlebars.registerHelper('bibtexForKey', function(key) {
-  return 'nada';
-});
-*/

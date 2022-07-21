@@ -1,3 +1,4 @@
+
 .my-accordion-button {
 	position: relative;
 	display: flex;
@@ -14,16 +15,8 @@
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
 }
 
-/* bibtex modal boxes */
-[id^=bibkey] {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
 /* The Modal (background) */
-[id~=modal] {
+.modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -47,7 +40,7 @@
 }
 
 /* The Close Button */
-[id^=closeModal] {
+.close {
   color: #aaaaaa;
   text-align: right;
   font-size: 28px;

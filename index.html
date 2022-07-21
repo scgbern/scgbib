@@ -21,6 +21,12 @@
                   type="submit" name="submit" value="Search">
             </form>
          </div>
+		 <div id="bibtexModal" class="modal">
+			 <div class="modal-content">
+				 <span class="close">&times;</span>
+				 <pre id="modalContent">No bibtex data found.</pre>
+			 </div>
+		 </div>
          <div class="row mt-4">
             <div class="col-4">
                <div id="resultsDiv" class="alert alert-success" role="alert">
@@ -99,17 +105,7 @@
                         </div>
                         </div>
                         {{/if}}
-                        </div>
-
-												<!-- NOT WORKING
-												<div id="modal{{key}}">
-												  <div class="modal-content">
-												    <span id="closeModal{{key}}">&times;</span>
-														<span id="bibtex{{key}}">bibtex goes here</span>
-												  </div>
-												</div>
-													-->
-												
+                        </div>                        
                         {{~/each}}
                   </template>
                   </div>
