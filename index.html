@@ -102,8 +102,9 @@
                                  {{#if (equals type "proceedings")}} {{joinToEnd ', ' BOOKTITLE EDITOR PUBLISHER ORGANIZATION ADDRESS (join '' MONTH ' ' YEAR) NOTE}} {{/if}}
                                  {{#if (equals type "techreport")}} {{joinToEnd ', ' AUTHOR TITLE (join '' '*Technical Report*') NUMBER INSTITUTION (join '' MONTH ' ' YEAR) TYPE ADDRESS NOTE  }}{{/if}}
                                  {{#if (equals type "unpublished")}} {{joinToEnd ', ' AUTHOR TITLE (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
-                                 {{~#if URL}} &nbsp {{pdfLink URL}} {{/if}}
                                  {{citationLink key}}
+                                 {{~#if URL}} &nbsp {{pdfLink URL}} {{/if}}
+                                 {{~#if DOI}} &nbsp {{doiLink DOI}} {{/if}}
                            </button>
                         </h2>
 

@@ -11,6 +11,7 @@
 ---
 # DONE
 
+- Added DOI links and new PDF icon
 - Updated the text of the results box
 - Added CSS to look more like scgpico 
 - Added citation links

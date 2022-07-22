@@ -281,8 +281,16 @@ Handlebars.registerHelper('joinToEnd', function(delim, ...args) {
 // Generate a PDF link
 Handlebars.registerHelper('pdfLink', function(url) {
   var url = Handlebars.escapeExpression(url);
-  const icon = '<img src="resources/pdf-icon.png" alt="PDF" style="width:18px;height:20px;">';
+  // const icon = '<img src="resources/pdf-icon.png" alt="PDF" style="width:18px;height:20px;">';
+  const icon = '<img src="resources/page_white_acrobat.png" alt="PDF" style="width:18px;height:20px;">';
   return new Handlebars.SafeString(`<a href='${url}'>${icon}</a>`);
+});
+
+// Generate a DOI link
+Handlebars.registerHelper('doiLink', function(url) {
+  var url = Handlebars.escapeExpression(url);
+  const icon = '<img src="resources/doi-logo-pale.png" alt="DOI" style="width:18px;height:20px;">';
+  return new Handlebars.SafeString(`<a href='https://doi.org/${url}'>${icon}</a>`);
 });
 
 // Return a suitable category heading for each bibtex entry type
