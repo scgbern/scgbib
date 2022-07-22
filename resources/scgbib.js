@@ -308,7 +308,7 @@ Handlebars.registerHelper('categoryName', function categoryName(type) {
     "misc": "Miscellaneous",
     "phdthesis": "PhD theses",
     "proceedings": "Conference proceedings",
-    "techreport": "Technical report",
+    "techreport": "Technical reports",
     "unpublished": "Unpublished"
   };
   if (type in categoryNames) {
