@@ -338,6 +338,11 @@ function openBibModal(key) {
       modal.style.display = "none";
     }
   }
+  fillBibModal(key);
+}
+
+// Ask the promise to fill the modal with the bib value for the key
+function fillBibModal(key) {
   window.bibPromise.then(entries => {
     var resultArray = entries.filter(entry => entry.includes(key));
     var result;
@@ -354,4 +359,3 @@ function openBibModal(key) {
     content.textContent = (result);
   })
 }
-
