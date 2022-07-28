@@ -1,15 +1,6 @@
-# TO DO
-
-- Check external links and remove broken ones
-
-- Add support for “or” queries (with or-bars) ?
-
-- Set up github actions to test for errors and generate JS
-
-- Set up assets/scgbib as a clone that can be pulled (won't work on yogi due to old RSA implementation)
-
----
 # DONE
+
+Log of issues already addressed. Further issues are tracked on [github](https://github.com/users/scgbern/projects/1).
 
 - Added DOI links and new PDF icon
 - Updated the text of the results box

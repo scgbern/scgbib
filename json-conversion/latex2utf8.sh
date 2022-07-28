@@ -43,6 +43,10 @@ s/\\em //g;
 s/\\wedge/wedge/g;
 s/\\cite//g;
 
+# Quotes
+s/``/“/g;
+s/''/”/g;
+
 # Various accents
 s/\\ss/ß/g;
 s/\\ae/æ/g;
