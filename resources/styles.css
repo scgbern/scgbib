@@ -17,6 +17,11 @@
 
 /* Pico scg theme style */
 
+#title * { margin: 0; color: #fff; }
+#title p { font-style: italic; }
+
+#title h1 { margin: 0.8rem 0; }
+
 #header { background: #6fb4e8; }
 #header > .container:after {
     content: '';
@@ -29,10 +34,18 @@
     padding: 1em 0 1em 0;
 }
 
-#title * { margin: 0; color: #fff; }
-#title p { font-style: italic; }
+#footer {
+    background: #6fb4e8;
+		color: #fff;
+}
 
-#title h1 { margin: 0.8rem 0; }
+#footer a { color: #ddd; }
+#footer a:hover { color: #fff; }
+
+#footer p {
+    margin: 0;
+    padding: 0.5em 0;
+}
 
 /*** TYPOGRAPHY ***/
 
