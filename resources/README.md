@@ -2,8 +2,8 @@
 
 This folder contains the resources needed for the search engine front end.
 
-- styles.css -- the CSS style file for the index.html
-- scgbib.js -- implements the search functions
+- [styles.css](styles.css) -- the CSS style file for the index.html
+- [scgbib.js](scgbib.js) -- implements the search functions
 
 Dependencies (loaded in the [index.html](../index.html)):
 
