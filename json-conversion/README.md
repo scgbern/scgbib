@@ -6,7 +6,7 @@ To generate the json file from the bibtex source file, run
 
 from the command line in the parent directory. This will perform:
 
-	./latex2utf8.sh ../scg.bib > _scgbib-translated.txt
+	./latex2utf8.pl ../scg.bib > _scgbib-translated.txt
 	node bib2json.js
 	mv scgbib.json ..
 
