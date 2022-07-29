@@ -13,6 +13,9 @@ This repo stores the bibliographic entries used for most of the [publications of
 - [cmd](https://github.com/scgbern/scgbib/tree/main/cmd) — scripts used the Makefile
 - [Linkchecker](https://github.com/scgbern/scgbib/tree/main/Linkchecker) — scripts to check for broken links
 
+If you need write access to this repo, please contact [me](https://github.com/onierstrasz).
+If you need to update the contents, please check the [instructions](archive/INSTRUCTIONS.md).
+
 This repo is a migration of the old scgbib repo formerly hosted on the SCG git repo.
 
 The [search engine](http://scg.unibe.ch/scgbib) is based on a [prototype](https://github.com/AlexandruFilipescu/Citation-Search-Engine) written by
