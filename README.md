@@ -4,14 +4,14 @@ This repo stores the bibliographic entries used for most of the [publications of
 
 ## Overview
 
-- [scg.bib](https://github.com/scgbern/scgbib/blob/main/scg.bib) — this is the [bibtex](https://en.wikipedia.org/wiki/BibTeX) source file containing all the bibliographic entries
-- [index.html](https://github.com/scgbern/scgbib/blob/main/index.html) — the landing page for the search engine
-- [scgbib.json](https://github.com/scgbern/scgbib/blob/main/scgbib.json) — the JSON version of the bibliographic entries, generates from the bibtex source
-- [json-conversion](https://github.com/scgbern/scgbib/tree/main/json-conversion) — the perl and javascript scripts to convert the bibtex file to json
-- [resources](https://github.com/scgbern/scgbib/tree/main/resources) — javascript, css and other resources for the front end
-- [Makefile](https://github.com/scgbern/scgbib/blob/main/Makefile) — various automated build rules
-- [cmd](https://github.com/scgbern/scgbib/tree/main/cmd) — scripts used the Makefile
-- [Linkchecker](https://github.com/scgbern/scgbib/tree/main/Linkchecker) — scripts to check for broken links
+- [scg.bib](main/scg.bib) — this is the [bibtex](https://en.wikipedia.org/wiki/BibTeX) source file containing all the bibliographic entries
+- [index.html](main/index.html) — the landing page for the search engine
+- [scgbib.json](main/scgbib.json) — the JSON version of the bibliographic entries, generates from the bibtex source
+- [json-conversion](json-conversion) — the perl and javascript scripts to convert the bibtex file to json
+- [resources](resources) — javascript, css and other resources for the front end
+- [Makefile](main/Makefile) — various automated build rules
+- [cmd](cmd) — scripts used the Makefile
+- [Linkchecker](Linkchecker) — scripts to check for broken links
 
 If you need write access to this repo, please contact [me](https://github.com/onierstrasz).
 If you need to update the contents, please check the [instructions](archive/INSTRUCTIONS.md).
