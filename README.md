@@ -4,12 +4,12 @@ This repo stores the bibliographic entries used for most of the [publications of
 
 ## Overview
 
-- [scg.bib](main/scg.bib) — this is the [bibtex](https://en.wikipedia.org/wiki/BibTeX) source file containing all the bibliographic entries
-- [index.html](main/index.html) — the landing page for the search engine
-- [scgbib.json](main/scgbib.json) — the JSON version of the bibliographic entries, generates from the bibtex source
+- [scg.bib](scg.bib) — this is the [bibtex](https://en.wikipedia.org/wiki/BibTeX) source file containing all the bibliographic entries
+- [index.html](index.html) — the landing page for the search engine
+- [scgbib.json](scgbib.json) — the JSON version of the bibliographic entries, generates from the bibtex source
 - [json-conversion](json-conversion) — the perl and javascript scripts to convert the bibtex file to json
 - [resources](resources) — javascript, css and other resources for the front end
-- [Makefile](main/Makefile) — various automated build rules
+- [Makefile](Makefile) — various automated build rules
 - [cmd](cmd) — scripts used the Makefile
 - [Linkchecker](Linkchecker) — scripts to check for broken links
 
