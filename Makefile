@@ -7,6 +7,9 @@ bl = BORIS-Backlog
 # ----------------------------------------------------------------------
 all : autocheckin
 
+rocky :
+	ssh scg@rocky.inf.unibe.ch "cd /srv/scg.unibe.ch/scgbib; git pull"
+
 # Prompt for log msg instead of firing up an editor
 autocheckin : json sort test
 	@/bin/echo -n "Please enter your log message: "
