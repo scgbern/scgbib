@@ -5,13 +5,13 @@
 b = scg.bib
 bl = BORIS-Backlog
 # ----------------------------------------------------------------------
-all : autocheckin
+all : autocheckin rocky
 
 rocky :
 	ssh scg@rocky.inf.unibe.ch "cd /srv/scg.unibe.ch/scgbib; git pull"
 
 # Prompt for log msg instead of firing up an editor
-autocheckin : json sort test
+autocheckin : sort test json
 	@/bin/echo -n "Please enter your log message: "
 	@sh -c 'read m; git commit -a -m "$$m"'
 	@git pull && git push
