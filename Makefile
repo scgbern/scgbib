@@ -110,6 +110,12 @@ boris :
 	rsplit scg-sub t-free t-sub
 	rsplit scg-old t-free t-old
 
+b21 :
+	rgrep scg21 $b > $@
+	rsplit scg-bp $@ tmp
+	rsplit scg-msc $@ tmp
+	-rm -f tmp
+
 b22 :
 	rgrep scg22 $b > $@
 	rsplit scg-bp $@ tmp
