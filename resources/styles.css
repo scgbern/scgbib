@@ -90,6 +90,9 @@ h4 { font-size: 1.1rem; }
 h5 { font-size: 1rem; }
 h6 { font-size: 1rem; font-weight: normal; font-style: italic; }
 
+/* Category headings */
+.p-2 { background-color: #e7f1ff; }
+
 /*** BASIC LAYOUT: EXTRA SMALL DEVICES ***/
 
 @media (max-width: 767px) {

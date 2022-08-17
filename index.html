@@ -86,7 +86,7 @@
                      {{/if}} 
                      <div class="accordion-item">
                         <h2 class="accordion-header" id="{{key}}random">
-                           <button class="{{#if ABSTRACT}}accordion-button {{else}} my-accordion-button {{/if}}"  type="button" data-bs-toggle="collapse" data-bs-target="#{{key}}" aria-expanded="true" aria-controls="{{key}}">
+                           <button class="{{#if ABSTRACT}}accordion-button collapsed {{else}} my-accordion-button {{/if}}"  type="button" data-bs-toggle="collapse" data-bs-target="#{{key}}" aria-expanded="false" aria-controls="{{key}}">
                               <div>
                                  {{#if (equals type "article")}} {{joinToEnd ', ' AUTHOR TITLE JOURNAL VOLUME NUMBER (join '' MONTH ' ' YEAR) PAGES NOTE }}{{/if}} 
                                  {{#if (equals type "book")}} {{joinToEnd ', ' AUTHOR EDITOR (join '' TITLE EDITION) PUBLISHER VOLUME SERIES ADDRESS (join '' MONTH ' ' YEAR) NOTE }} {{/if}}
