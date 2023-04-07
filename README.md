@@ -2,6 +2,9 @@
 
 This repo stores the bibliographic entries used for most of the [publications of the Software Composition Group](http://scg.unibe.ch/publications) as well as the implementation of the online [SCG bibliography search engine](http://scg.unibe.ch/scgbib).
 
+The search engine is hosted at [scg.unibe.ch/scgbib](http://scg.unibe.ch/scgbib)
+but you can also use it directly from [scgbern.github.io/scgbib/](https://scgbern.github.io/scgbib/).
+
 ## Overview
 
 - [scg.bib](scg.bib) — this is the [bibtex](https://en.wikipedia.org/wiki/BibTeX) source file containing all the bibliographic entries
