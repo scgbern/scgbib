@@ -23,4 +23,5 @@ This repo is a migration of the old scgbib repo formerly hosted on the SCG git r
 
 The [search engine](http://scg.unibe.ch/scgbib) is based on a [prototype](https://github.com/AlexandruFilipescu/Citation-Search-Engine) written by
 [Alexandru Filipescu](https://github.com/AlexandruFilipescu) as part of a [seminar project](http://scg.unibe.ch/wiki/projects/mastersbachelorsprojects/Implementing-a-citation-search-engine-in-JavaScript).
-## Installation```Metacello new	repository: 'github://scgbern/scgbib:main/src';	baseline: 'Scgbib';	load.#BaselineOfScgbib asClass loadLepiter.```
+
+## Loading into GT```Metacello new	repository: 'github://scgbern/scgbib:main/src';	baseline: 'Scgbib';	load.#BaselineOfScgbib asClass loadLepiter.```
