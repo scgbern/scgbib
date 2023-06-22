@@ -4,14 +4,19 @@ Class {
 	#category : #BaselineOfScgbib
 }
 
-{ #category : #accessing }
+{ #category : #loading }
 BaselineOfScgbib class >> loadLepiter [
-	[ | currentProperties |
-	currentProperties := LeDatabasesRegistry defaultLogicalDatabase properties.
-	currentProperties
-		addRegisteredDirectory: FileLocator imageDirectory / 'pharo-local' / 'iceberg' / 'scgbern' / 'scgbib'
-				/ 'lepiter'.
-	LeDatabasesRegistry default defaultLogicalDatabase reload ]
+	IceRepository registry  
+		detect: [ :aRepository |
+			aRepository name = 'scgbib' ]
+		ifFound: [ :aRepository | 
+			| defaultDatabase currentProperties |
+			defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
+			currentProperties := defaultDatabase properties.
+			currentProperties addRegisteredDirectory: aRepository repositoryDirectory / 'lepiter'.
+			defaultDatabase reload ]
+		ifNone: [
+			self inform: 'Repository not found.' ]
 ]
 
 { #category : #baseline }
