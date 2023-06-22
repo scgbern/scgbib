@@ -119,7 +119,45 @@
 				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
-					"items" : [ ]
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2023-06-22T10:24:04.62399+02:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2023-06-22T10:24:04.62645+02:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "Ey7fVxW7DQCT0KcIDgTqkg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "[[Wrapping the SCG bib]]"
+						}
+					]
 				},
 				"createEmail" : {
 					"__type" : "email",
@@ -129,7 +167,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-06-21T18:15:21.759899+02:00"
+						"dateAndTimeString" : "2023-06-22T10:24:31.305776+02:00"
 					}
 				},
 				"editEmail" : {
@@ -140,51 +178,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-06-21T18:48:11.462597+02:00"
+						"dateAndTimeString" : "2023-06-22T10:24:32.950198+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "/06+zwe7DQCUQSOgD4865Q=="
+					"uidString" : "9PW5WRW7DQCUYa5EDgTqkg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "We want an Scgbib object to wrap the local json file."
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-06-21T18:48:16.489682+02:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-06-21T18:55:02.639468+02:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "a0VyRQi7DQCJJlfdC1rs7Q=="
-				},
-				"code" : "Scgbib instance"
+				"string" : "# Steps"
 			},
 			{
 				"__type" : "textSnippet",
@@ -200,7 +204,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-06-21T18:53:07.891229+02:00"
+						"dateAndTimeString" : "2023-06-22T10:24:00.415139+02:00"
 					}
 				},
 				"editEmail" : {
@@ -211,49 +215,12 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-06-21T18:53:44.960468+02:00"
+						"dateAndTimeString" : "2023-06-22T10:24:00.415139+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "wLnQVgi7DQCLHzXQC1rs7Q=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "For the moment we just wrap a dictionary of dictionaries. Later we want each reference dictionary to be a bibref object."
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-06-21T18:14:29.791726+02:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-06-21T18:14:29.791726+02:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "CFilzAe7DQCTCWvYD4865Q=="
+					"uidString" : "BpviVxW7DQCT1Vi4DgTqkg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
