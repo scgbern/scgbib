@@ -137,14 +137,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-07-05T17:01:16.66536+02:00"
+						"dateAndTimeString" : "2023-07-05T17:01:38.784933+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "bVbpYCC8DQCi8E0zCUinlw=="
 				},
-				"code" : "collaborators := ((((recent\r\t\tflatCollect: [ :item | ' and ' split: (item at: 'AUTHOR') ])) reject: [:each | each matchesRegex: '.*Nierstrasz.*'])\r\t\tcollect: [ :each | \r\t\t\t| parts |\r\t\t\tparts := ', ' split: each.\r\t\t\tparts size > 1 ifTrue: [ parts second , ' ' , parts first ] ifFalse: [ each ] ]) asSet asSortedCollection"
+				"code" : "collaborators := ((((recent\r\t\tflatCollect: [ :item | ' and ' split: (item at: 'AUTHOR') ])) reject: [:each | each matchesRegex: '.*Nierstrasz.*'])\r\t\tcollect: [ :each | \r\t\t\t| parts |\r\t\t\tparts := ', ' split: each.\r\t\t\tparts size > 1 ifTrue: [ parts second , ' ' , parts first ] ifFalse: [ each ] ]) asSet asSortedCollection."
 			}
 		]
 	},

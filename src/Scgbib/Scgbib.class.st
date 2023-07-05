@@ -20,6 +20,12 @@ Scgbib class >> instance [
 ]
 
 { #category : #accessing }
+Scgbib class >> renew [
+	instance := nil.
+	^ self instance
+]
+
+{ #category : #accessing }
 Scgbib >> data [
 	^ data
 ]
