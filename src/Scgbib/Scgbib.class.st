@@ -51,6 +51,11 @@ Scgbib >> initialize [
 				collect: [ :each | (each at: 'key') -> each ]) asOrderedDictionary
 ]
 
+{ #category : #accessing }
+Scgbib >> items [
+	^ self data values
+]
+
 { #category : #constant }
 Scgbib >> jsonFile [
 	^ FileLocator imageDirectory / 'pharo-local/iceberg/scgbern/scgbib/scgbib.json'
