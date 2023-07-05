@@ -103,14 +103,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-07-05T17:01:33.223224+02:00"
+						"dateAndTimeString" : "2023-07-05T17:10:38.220521+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "hMBlHCC8DQCXRoIMCUinlw=="
 				},
-				"code" : "recent := Scgbib instance items\r\tselect: [ :item | \r\t\t((item at: 'AUTHOR' ifAbsent: [ '' ]) matchesRegex: '.*Nierstrasz.*')\r\t\t\tand: [ (item at: 'YEAR' ifAbsent: [ '' ]) matchesRegex: '2019|2020|2021|2022|2023' ] ]."
+				"code" : "recent := Scgbib instance items\r\t\tselect: [ :item | \r\t\t\t((item at: 'AUTHOR' ifAbsent: [ '' ]) matchesRegex: '.*Nierstrasz.*')\r\t\t\t\tand: [ (item at: 'YEAR' ifAbsent: [ '' ]) matchesRegex: '2019|2020|2021|2022|2023' ] ].\r\rcollaborators := (((recent\r\t\tflatCollect: [ :item | ' and ' split: (item at: 'AUTHOR') ])\r\t\treject: [ :each | each matchesRegex: '.*Nierstrasz.*' ])\r\t\tcollect: [ :each | \r\t\t\t| parts |\r\t\t\tparts := ', ' split: each.\r\t\t\tparts size > 1 ifTrue: [ parts second , ' ' , parts first ] ifFalse: [ each ] ])\r\t\tasSet asSortedCollection.\r\r(String cr repeat: 2 )\r\rcollaborators"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -126,7 +126,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-07-05T16:59:08.119886+02:00"
+						"dateAndTimeString" : "2023-07-05T17:06:59.833592+02:00"
 					}
 				},
 				"editEmail" : {
@@ -137,14 +137,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2023-07-05T17:01:38.784933+02:00"
+						"dateAndTimeString" : "2023-07-05T17:07:04.47341+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "bVbpYCC8DQCi8E0zCUinlw=="
+					"uidString" : "vhgHfSC8DQClB2/cCUinlw=="
 				},
-				"code" : "collaborators := ((((recent\r\t\tflatCollect: [ :item | ' and ' split: (item at: 'AUTHOR') ])) reject: [:each | each matchesRegex: '.*Nierstrasz.*'])\r\t\tcollect: [ :each | \r\t\t\t| parts |\r\t\t\tparts := ', ' split: each.\r\t\t\tparts size > 1 ifTrue: [ parts second , ' ' , parts first ] ifFalse: [ each ] ]) asSet asSortedCollection."
+				"code" : "Scgbib renew "
 			}
 		]
 	},
