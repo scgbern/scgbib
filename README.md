@@ -9,7 +9,7 @@ but you can also use it directly from [scgbern.github.io/scgbib/](https://scgber
 
 - [scg.bib](scg.bib) — this is the [bibtex](https://en.wikipedia.org/wiki/BibTeX) source file containing all the bibliographic entries
 - [index.html](index.html) — the landing page for the search engine
-- [scgbib.json](scgbib.json) — the JSON version of the bibliographic entries, generates from the bibtex source
+- [scgbib.json](scgbib.json) — the JSON version of the bibliographic entries, generated from the bibtex source
 - [json-conversion](json-conversion) — the perl and javascript scripts to convert the bibtex file to json
 - [resources](resources) — javascript, css and other resources for the front end
 - [Makefile](Makefile) — various automated build rules
@@ -24,4 +24,21 @@ This repo is a migration of the old scgbib repo formerly hosted on the SCG git r
 The [search engine](http://scg.unibe.ch/scgbib) is based on a [prototype](https://github.com/AlexandruFilipescu/Citation-Search-Engine) written by
 [Alexandru Filipescu](https://github.com/AlexandruFilipescu) as part of a [seminar project](http://scg.unibe.ch/wiki/projects/mastersbachelorsprojects/Implementing-a-citation-search-engine-in-JavaScript).
 
-## Loading into GT```Metacello new	repository: 'github://scgbern/scgbib:main/src';	baseline: 'Scgbib';	load.#BaselineOfScgbib asClass loadLepiter.```## Load Lepiter				After installing with Metacello, you will be able to execute```#BaselineOfScgbib asClass loadLepiter```
+## Loading into GT
+
+```
+Metacello new
+	repository: 'github://scgbern/scgbib:main/src';
+	baseline: 'Scgbib';
+	load.
+#BaselineOfScgbib asClass loadLepiter.
+```
+
+## Load Lepiter
+				
+After installing with Metacello, you will be able to execute
+
+```
+#BaselineOfScgbib asClass loadLepiter
+```
+
