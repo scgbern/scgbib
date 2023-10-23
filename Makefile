@@ -46,6 +46,16 @@ scgbib.json : scg.bib
 	node bib2json.js; \
 	mv scgbib.json ..
 # ----------------------------------------------------------------------
+# Generate test files 
+scgpub : scg-pub.json
+scg-pub.bib : $b
+	rgrep scg-pub $b > $@
+scg-pub.json : scg-pub.bib
+	cd json-conversion; \
+	./latex2utf8.pl ../scg-pub.bib > _scgbib-translated.txt; \
+	node bib2json.js; \
+	mv scgbib.json ../scg-pub.json
+# ----------------------------------------------------------------------
 # fold long lines
 fold :
 	cp scg.bib backup.bib
@@ -250,7 +260,7 @@ keywords : $b
 	| sort -rn > $@
 # ----------------------------------------------------------------------
 clean :
-	rm -f tmp.* errs t-* $f fs*.bib
+	rm -f tmp.* errs t-* $f fs*.bib scg-pub.*
 # ----------------------------------------------------------------------
 onpubs :
 	rgrep -i 'author\s*=[^=]*Nierstrasz' $b > $@
