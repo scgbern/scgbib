@@ -20000,6 +20000,19 @@
 		"MONTH": "May"
 	},
 	{
+		"key": "Bunz25a",
+		"type": "mastersthesis",
+		"TITLE": "Revealing Programming Language Abstractions — Introducing a Learning Environment to Examine Programs from Source Code to Bytecode",
+		"AUTHOR": "Simon Bünzli Straub",
+		"ABSTRACT": "This thesis presents an environment to teach programming and computer\n\t\tarchitecture at high school level that allows students to experience and\n\t\tinteractively explore various abstraction levels involved in running a\n\t\tprogram. Didactic literature suggests that exploring different\n\t\tabstraction levels improves students' understanding of both programming\n\t\tand the inner workings of a computer system. Such multi-layered\n\t\texploration is also considered a foundational idea of computer science\n\t\tand has to be taught because, among other reasons, some lower abstraction\n\t\tlayers tend to leak through interfaces anyway. For this purpose, the\n\t\tteaching environment “Processing Abstractions” has been created on the\n\t\tbasis of the Smalltalk environment Glamorous Toolkit. This environment\n\t\tcontains a compiler for a subset of the Processing programming language\n\t\tin its Python form, for which a variety of views were molded:\n\t\ttokenization, syntax tree building, transpilation of Processing into\n\t\tSmalltalk, translations to an intermediary language and eventually to\n\t\tSmalltalk bytecode, and finally, the program's actual output. These views\n\t\tare tied to the source code, updated live for seamless exploration, and\n\t\tcan be composed into interactive material to teach the abstraction levels\n\t\tinvolved in programming; examples for which are also included. Processing\n\t\tAbstractions has been used and evaluated during a few lessons. On the\n\t\tbasis of the limited data available, the evaluation shows that the live\n\t\tenvironment does encourage experimentation and allows students to work\n\t\tand learn at their own pace and depth. However, understanding of the\n\t\tvarious layers has not improved significantly in the short period of time\n\t\tthat the environment could be tested.",
+		"KEYWORDS": "seg-msc gt-pub",
+		"SCHOOL": "University of Bern",
+		"TYPE": "Masters thesis",
+		"URL": "https://github.com/zeniko/gyminf-thesis/blob/main/thesis.pdf",
+		"MONTH": "August",
+		"YEAR": "2025"
+	},
+	{
 		"key": "Burc98a",
 		"type": "book",
 		"AUTHOR": "H.W. Fowler and R. W. Burchfield",
