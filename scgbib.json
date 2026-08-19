@@ -86354,6 +86354,19 @@
 		"YEAR": "1996"
 	},
 	{
+		"key": "Muss26a",
+		"type": "unpublished",
+		"ABSTRACT": "",
+		"ANNOTE": "draft",
+		"AUTHOR": "Mussbacher, Gunter and Combemale, Benoit and Bruel, Jean-Michel and\n\t\t\tDavid, Istvan and Degueule, Thomas and Döderlein, Jean-Baptiste and\n\t\t\tFreisleben, Bernd and Jezequel, Jean-Marc and McIntosh, Shane and Mezini, Mira and\n\t\t\tMichael, Judith and Khuu, Kalvin Thuan-Phong and Monperrus, Martin and Mosser,\n\t\t\tSébastien and Murphy, Gail C. and Nierstrasz, Oscar and Proksch, Sebastian and\n\t\t\tRandrianaina, Georges Aaron and Sahraoui, Houari and Salomon, Marie",
+		"MEDIUM": "1",
+		"KEYWORDS": "missing-DOI missing-PDF",
+		"NOTE": "submitted for publication",
+		"PEERREVIEW": "yes",
+		"TITLE": "Continuous Software Engineering---Everything, Everywhere, All at Once",
+		"YEAR": "2026"
+	},
+	{
 		"key": "Muth95a",
 		"type": "techreport",
 		"AUTHOR": "Jeyakumar Muthukumarasamy and John T. Stasko",
